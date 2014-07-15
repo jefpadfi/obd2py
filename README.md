@@ -10,7 +10,7 @@ Speed,
 RPM,
 Temps for oil, coolent, intake,
 Engine load,
-Setting of mpg, kph, fahrenheit, celsius
+Setting of mph, kph, fahrenheit, celsius
 
 Advanced Features:
 MPG/LPG,
