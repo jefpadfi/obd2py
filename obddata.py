@@ -3,6 +3,8 @@ Programmer: JR Padfield
 Description: Pulls information from the obd 2 sensors.
 Version: 1
 Date: 07/15/2014
+
+Most definitions were found in pi2go. Updated the equations according to OBD-11PID wiki page.
 '''
 
 import string
