@@ -13,3 +13,10 @@ degreeFormat = "f"  # f = fahrenheit c = celsius
 
 # Speed format
 speedFormat = "mph"  # mph = us format, kph = metric format
+
+# fuel mileage
+fuelFormat = "mpg"  # mpg = miles per gallon, lpg = liters per gallon
+
+# logging
+logging = True  # if you want to use SQLite to log the information set it to true.
+                # If you don't want to log it set to false.
