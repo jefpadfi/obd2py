@@ -20,3 +20,6 @@ fuelFormat = "mpg"  # mpg = miles per gallon, lpg = liters per gallon
 # logging
 logging = True  # if you want to use SQLite to log the information set it to true.
                 # If you don't want to log it set to false.
+
+# update interval - updates the gui every x seconds
+guiUpdate = 1000 # 1000ms = 1 second
