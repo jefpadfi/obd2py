@@ -37,8 +37,8 @@ class GUI(object):
         self.oilTempLabel.grid(row=3, column=1)
 
         # create coolent temp label
-        self.coolentTempLabel = Label(self.basicBook, text="0.0 Degrees")
-        self.coolentTempLabel.grid(row=3, column=2)
+        self.coolantTempLabel = Label(self.basicBook, text="0.0 Degrees")
+        self.coolantTempLabel.grid(row=3, column=2)
 
         # create intake temp label
         self.intakeTempLabel = Label(self.basicBook, text="0.0 Degrees")
@@ -55,9 +55,9 @@ class GUI(object):
     def update_gui(self):
         """ Updates the text of the labels. This happens """
         print("Updating Text")
-        self.mphLabel.config(text=str(obddata.speed) + " MPH")
-        self.rpmLabel.config(text=str(obddata.rpm) + " RPM")
-        self.oilTempLabel.config(text=str(obddata.oil_temp) + " Oil Temp")
-        self.coolentTempLabel.config(text=str(obddata.coolant_temp) + " Coolent Temp")
-        self.intakeTempLabel.config(text=str(obddata.intake_temp) + " Intake Temp")
-        self.engineLoadLabel.config(text=str(obddata.engine_load) + " Engine Load")
+        self.mphLabel.config(text=str(obddata.speed(self)) + " MPH")
+        self.rpmLabel.config(text=str(obddata.rpm(self)) + " RPM")
+        self.oilTempLabel.config(text=str(obddata.oil_temp(self)) + " Oil Temp")
+        self.coolantTempLabel.config(text=str(obddata.coolant_temp(self)) + " Coolant Temp")
+        self.intakeTempLabel.config(text=str(obddata.intake_temp(self)) + " Intake Temp")
+        self.engineLoadLabel.config(text=str(obddata.engine_load(self)) + " Engine Load")

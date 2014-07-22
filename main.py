@@ -6,14 +6,21 @@ Date: 07/15/2014
 '''
 
 from tkinter import *
-from config import guiUpdate
+from config import guiUpdate, serialDevice
 import gui
+from obddata import obddata
+
+try:
+    import serial
+except AttributeError:
+    print("Please install pySerial so we can use this program")
 
 
 
 class OBD2PY(Frame):
     def __init__(self, master):
         """ Loads all files and executes the gui """
+        obddata.__init__(self)
         super(OBD2PY, self).__init__(master)
         self.grid()
         gui.GUI.create_gui(self)
