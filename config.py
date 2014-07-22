@@ -6,7 +6,7 @@ Date: 07/15/2014
 '''
 
 # Location for the serial device to communicate to
-serialDevice = '/dev/ttyUSB0'
+serialDevice = "/dev/ttyUSB0"
 
 # Degrees format
 degreeFormat = "f"  # f = fahrenheit c = celsius
