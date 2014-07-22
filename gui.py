@@ -6,6 +6,7 @@ Date: 07/15/2014
 '''
 from tkinter import *
 from tkinter import ttk
+from obddata import *
 
 
 class GUI(object):
@@ -26,7 +27,6 @@ class GUI(object):
         # create mph/kph label
         self.mphLabel = Label(self.basicBook, text="0.0 MPH")
         self.mphLabel.grid(row=2, column=1)
-        self.mphText = StringVar()
 
         # create rpm label
         self.rpmLabel = Label(self.basicBook, text="0.0 RPM")
@@ -55,4 +55,9 @@ class GUI(object):
     def update_gui(self):
         """ Updates the text of the labels. This happens """
         print("Updating Text")
-        self.mphLabel.config(text="new text")
+        self.mphLabel.config(text=str(obddata.speed) + " MPH")
+        self.rpmLabel.config(text=str(obddata.rpm) + " RPM")
+        self.oilTempLabel.config(text=str(obddata.oil_temp) + " Oil Temp")
+        self.coolentTempLabel.config(text=str(obddata.coolant_temp) + " Coolent Temp")
+        self.intakeTempLabel.config(text=str(obddata.intake_temp) + " Intake Temp")
+        self.engineLoadLabel.config(text=str(obddata.engine_load) + " Engine Load")
