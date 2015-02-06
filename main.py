@@ -35,6 +35,6 @@ if __name__ == "__main__":
     ''' Start the application '''
     root = Tk()
     root.title("OBD2PY - By: The Doctor")
-    root.geometry("320x240")
+    root.geometry("1024x640")
     app = OBD2PY(root)
     root.mainloop()

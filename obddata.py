@@ -31,7 +31,7 @@ class obddata(object):
         """ Writes the command for info you want to grab. """
         self.serialIO.flushInput()
         self.serialIO.flushOutput()
-        self.serialIO.write("01 ".encode() + cmd.encode() + " \r".encode())
+        self.serialIO.write("01 " + cmd + " \r")
 
     def serialRead(self):
         """ Reads the output of obd """
@@ -81,8 +81,8 @@ class obddata(object):
         """ Gets the RPM of the engine """
         if self.serialIO is None:
             return "Serial IO not setup."
-        self.serialIO.write("01 0C \r".encode())
-        rpm_list = self.serialIO.readline().split(' ')
+        self.serialWrite("0C")
+        rpm_list = self.serialRead()
         rpm_value = []
         rpm_value.append(rpm_list[0][4:6])
         rpm_value.append(rpm_list[0][6:8])
@@ -104,9 +104,9 @@ class obddata(object):
         # Gets the outside air temperature from the air intake
         if self.serialIO is None:
             return "Serial IO not setup."
-        self.serialIO.write("01 0f \r".encode())
+        self.serialWrite("0f")
         # write the values to a list
-        temp_list = self.serialIO.readline().split(' ')
+        temp_list = self.serialRead()
         temp_hex = temp_list[0][4:6]
         try:
             temp_float = float(int("0x"+temp_hex, 0))
@@ -133,9 +133,9 @@ class obddata(object):
         """ Gets the oil temperature of the vehicle """
         if self.serialIO is None:
             return "Serial IO not setup."
-        self.serialIO.write("01 5C \r".encode())
+        self.serialWrite("5C")
         # write the values to a list
-        temp_list = self.serialIO.readline().split(' ')
+        temp_list = self.serialRead()
         temp_hex = temp_list[0][4:6]
         try:
             temp_float = float(int("0x"+temp_hex, 0))
@@ -162,9 +162,9 @@ class obddata(object):
         """ Gets the coolant temperature """
         if self.serialIO is None:
             return "Serial IO not setup."
-        self.serialIO.write("01 05 \r".encode())
+        self.serialWrite("05")
         # write the values to a list
-        temp_list = self.serialIO.readline().split(' ')
+        temp_list = self.serialRead()
         temp_hex = temp_list[0][4:6]
         try:
             temp_float = float(int("0x"+temp_hex, 0))
@@ -191,8 +191,8 @@ class obddata(object):
         """ Gets the total load of the engine """
         if self.serialIO is None:
             return "Serial IO not setup."
-        self.serialIO.write("01 04 \r".encode())
-        load_list = self.serialIO.readline().split(' ')
+        self.serialWrite("04")
+        load_list = self.serialRead()
         load_hex = load_list[0][4:6]
         try:
             load_float = float(int("0x"+load_hex, 0))

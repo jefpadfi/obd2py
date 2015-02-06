@@ -1,12 +1,13 @@
-'''
+"""
 Programmer: JR Padfield
 Description: Creates the entire gui and allows it to be updated
 Version: 1
 Date: 07/15/2014
-'''
+"""
 from tkinter import *
 from tkinter import ttk
 from obddata import *
+
 
 
 class GUI(object):
