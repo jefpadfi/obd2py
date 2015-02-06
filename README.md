@@ -8,7 +8,7 @@ The biggest difference is the interface used. I will be using tkinter where at p
 Basic Features:
 Speed,
 RPM,
-Temps for oil, coolent, intake,
+Temps for oil, coolant, intake,
 Engine load,
 Setting of mph, kph, fahrenheit, celsius
 
