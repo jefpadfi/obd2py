@@ -15,6 +15,7 @@ try:
 except AttributeError:
     print("Please install pySerial so we can use this program")
 
+
 class obddata(object):
     """Data collected from obd sensors """
 
