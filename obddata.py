@@ -23,7 +23,7 @@ class obddata(object):
         try:
             self.serialIO = serial.Serial(serialDevice, 38400, timeout=1)
             print("serialIO setup correctly")
-        except:
+        except():
             print("Issue with communicating with the Serial device. "
                   "\nPlease check config.py's serialDevice setting is correct.")
             self.serialIO = None
@@ -32,7 +32,8 @@ class obddata(object):
         """ Writes the command for info you want to grab. """
         self.serialIO.flushInput()
         self.serialIO.flushOutput()
-        self.serialIO.write("01 " + cmd + " \r")
+        code = "01 " + cmd + "\r"
+        self.serialIO.write(code.encode())
 
     def serialRead(self):
         """ Reads the output of obd """
@@ -78,27 +79,24 @@ class obddata(object):
 
         return speed_float
 
-    def rpm(self):
+    def rpm(self, oldValues):
         """ Gets the RPM of the engine """
         if self.serialIO is None:
             return "Serial IO not setup."
         self.serialWrite("0C")
         rpm_list = self.serialRead()
-        rpm_value = []
-        rpm_value.append(rpm_list[0][4:6])
-        rpm_value.append(rpm_list[0][6:8])
-        try:
-            rpm_value[0] = float(int("0x"+rpm_value[0], 0))
-            rpm_value[1] = float(int("0x"+rpm_value[1], 0))
-        except:
-            # something went wrong
-            print("There is an issue with reading the RPM of the vehicle")
-            return 0
+        if rpm_list == -1:
+            rpm_final = oldValues[0]
+        else:
+            rpm_hex = rpm_list[0]
+            rpm_list[0] = float(int("0x" + rpm_list[0], 0))
+            rpm_list[1] = float(int("0x" + rpm_list[1], 0))
 
-        # Calculate the actual rpm
-        rpm_final = ((rpm_value[0]*256)+rpm_value[1])/4
-        # return the correct rpm
-        print(rpm_final)
+            # Calculate the actual rpm
+            rpm_final = ((rpm_list[0]*256)+rpm_list[1])*.25
+            # return the correct rpm
+            print(rpm_final)
+
         return rpm_final
 
     def intake_temp(self):
@@ -203,3 +201,7 @@ class obddata(object):
 
         load_final = (load_float*100)/255
         return load_final
+
+    def readValues(self, OBDvalues):
+        """ Gets all the values to display! """
+        OBDValues[0] = obddata.rpm(self, OBDvalues)

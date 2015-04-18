@@ -6,7 +6,7 @@ Date: 07/15/2014
 '''
 
 from tkinter import *
-from config import guiUpdate, serialDevice
+from config import guiUpdate, serialDevice, OBDValues
 import gui
 from obddata import obddata
 
@@ -20,14 +20,16 @@ except AttributeError:
 class OBD2PY(Frame):
     def __init__(self, master):
         """ Loads all files and executes the gui """
-        obddata.__init__(self)
+        self.obdII = obddata()
         super(OBD2PY, self).__init__(master)
         self.grid()
         gui.GUI.create_gui(self)
+        self.stop = False
         self.run()
 
     def run(self):
         """ Runs the main program and updates values """
+        self.obdII.readValues(OBDValues)
         gui.GUI.update_gui(self)
         self.after(guiUpdate, self.run)
 
