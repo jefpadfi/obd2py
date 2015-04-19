@@ -68,6 +68,7 @@ class obddata(object):
                 # display speed in miles per hour
                 #speed_float = speed_float * 0.621371
                 speed_float = speed_float * 1.609 - 20.917
+
                 print("mph = " + str(speed_float))
             elif speedFormat == "kph":
                 # display speed in kilometers per hour
