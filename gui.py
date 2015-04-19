@@ -57,9 +57,9 @@ class GUI(object):
         """ Updates the text of the labels. This happens """
         print("Updating Text")
 
-#        self.mphLabel.config(text=str(obddata.speed(self)) + " MPH")
-        self.rpmLabel.config(text=str(OBDValues[0]) + " RPM")
-#        self.oilTempLabel.config(text=str(obddata.oil_temp(self)) + " Oil Temp")
-#        self.coolantTempLabel.config(text=str(obddata.coolant_temp(self)) + " Coolant Temp")
-#        self.intakeTempLabel.config(text=str(obddata.intake_temp(self)) + " Intake Temp")
-#        self.engineLoadLabel.config(text=str(obddata.engine_load(self)) + " Engine Load")
+        self.mphLabel.config(text=str(OBDValues[0]) + " MPH")
+        self.rpmLabel.config(text=str(OBDValues[1]) + " RPM")
+        self.oilTempLabel.config(text=str(OBDValues[2]) + " Oil Temp")
+        self.coolantTempLabel.config(text=str(OBDValues[3]) + " Coolant Temp")
+        self.intakeTempLabel.config(text=str(OBDValues[4]) + " Intake Temp")
+        self.engineLoadLabel.config(text=str(OBDValues[5]) + " Engine Load")

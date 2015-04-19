@@ -16,7 +16,6 @@ except AttributeError:
     print("Please install pySerial so we can use this program")
 
 
-
 class OBD2PY(Frame):
     def __init__(self, master):
         """ Loads all files and executes the gui """

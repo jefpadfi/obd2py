@@ -22,7 +22,7 @@ logging = True  # if you want to use SQLite to log the information set it to tru
                 # If you don't want to log it set to false.
 
 # update interval - updates the gui every x seconds
-guiUpdate = 1000  # 1000ms = 1 second
+guiUpdate = 500  # 1000ms = 1 second
 
 # List to hold values to display on lcd
-OBDValues = [0, 0, 0, 0, 0, 0]
+OBDValues = [0, 0, 0, 0, 0, 0, 0, 0]
