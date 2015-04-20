@@ -57,21 +57,17 @@ class obddata(object):
             return "Serial IO not setup."
         self.serialWrite("0D")
         speed_list = self.serialRead()
-        print("Contents of speed_list" + str(speed_list))
         if speed_list == -1 or speed_list == 0:
             print("There is an issue with reading the speed of the vehicle.")
             return 0
         else:
             speed_hex = speed_list[1]
             speed_float = float(int("0x" + speed_hex, 0))
-            print("Speed float = " + str(speed_float))
             if speedFormat == "mph":
                 # display speed in miles per hour
                 speed_float *= 0.621371
-                print("mph = " + str(speed_float))
             elif speedFormat == "kph":
                 # display speed in kilometers per hour
-                print("kph = " + str(speed_float))
                 return speed_float
             else:
                 # error
@@ -88,16 +84,13 @@ class obddata(object):
         if rpm_list == -1:
             rpm_final = oldValues[1]
         else:
-            rpm_hex1 = rpm_list[0]
+            rpm_hex1 = rpm_list[1]
             rpm_hex2 = rpm_list[2]
-            rpm_list[0] = float(int("0x" + rpm_list[0], 0))
-            rpm_list[1] = float(int("0x" + rpm_list[1], 0))
+            rpm_list[0] = float(int("0x" + rpm_hex1, 0))
+            rpm_list[1] = float(int("0x" + rpm_hex2, 0))
 
             # Calculate the actual rpm
-            #rpm_final = (rpm_list[0] * 256 + rpm_list[1]) / 4
-            rpm_final1 = rpm_list[0] * 256 / 4
-            rpm_final2 = rpm_list[1] * 256 / 4
-            rpm_final = rpm_final1 + rpm_final2 - 744
+            rpm_final = ((rpm_list[0] * 256) + rpm_list[1]) / 4
             # return the correct rpm
             #print(rpm_final)
 
@@ -208,7 +201,7 @@ class obddata(object):
             return oldValues[6]
         else:
             # find the actual value.
-            temp_hex = temp_list
+            temp_hex = temp_list[1]
             temp_list = float(int("0x" + str(temp_hex), 0))
             flow_rate = ((temp_list * 256) + temp_list) / 100
 
