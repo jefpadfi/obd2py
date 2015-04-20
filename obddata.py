@@ -57,18 +57,17 @@ class obddata(object):
             return "Serial IO not setup."
         self.serialWrite("0D")
         speed_list = self.serialRead()
+        print("Contents of speed_list" + str(speed_list))
         if speed_list == -1 or speed_list == 0:
             print("There is an issue with reading the speed of the vehicle.")
             return 0
         else:
-            speed_hex = speed_list[0]
+            speed_hex = speed_list[1]
             speed_float = float(int("0x" + speed_hex, 0))
             print("Speed float = " + str(speed_float))
             if speedFormat == "mph":
                 # display speed in miles per hour
-                #speed_float = speed_float * 0.621371
-                speed_float = speed_float * 1.609 - 20.917
-
+                speed_float *= 0.621371
                 print("mph = " + str(speed_float))
             elif speedFormat == "kph":
                 # display speed in kilometers per hour
