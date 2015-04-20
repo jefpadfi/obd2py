@@ -80,6 +80,7 @@ class obddata(object):
 
     def rpm(self, oldValues):
         """ Gets the RPM of the engine """
+        # TODO: Fix RPM display
         if self.serialIO is None:
             return "Serial IO not setup."
         self.serialWrite("0C")
