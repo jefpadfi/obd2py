@@ -57,6 +57,10 @@ class obddata(object):
             return "Serial IO not setup."
         self.serialWrite("0D")
         speed_list = self.serialRead()
+        # Check to make sure returned list is not empty
+        if not speed_list:
+            print("Speed is empty. Return 0")
+            return 0
         if speed_list == -1 or speed_list == 0:
             print("There is an issue with reading the speed of the vehicle.")
             return 0
@@ -81,6 +85,10 @@ class obddata(object):
             return "Serial IO not setup."
         self.serialWrite("0C")
         rpm_list = self.serialRead()
+        # Check to make sure returned list is not empty
+        if not rpm_list:
+            print("RPM is empty. Return 0")
+            return 0
         if rpm_list == -1:
             rpm_final = oldValues[1]
         else:
@@ -103,6 +111,10 @@ class obddata(object):
         self.serialWrite("0f")
         # write the values to a list
         temp_list = self.serialRead()
+        # Check to make sure returned list is not empty
+        if not temp_list:
+            print("Intake Temp is empty. Return 0")
+            return 0
         if temp_list == -1:
             return oldValues[2]
         else:
@@ -130,6 +142,10 @@ class obddata(object):
         self.serialWrite("5C")
         # write the values to a list
         temp_list = self.serialRead()
+        # Check to make sure returned list is not empty
+        if not temp_list:
+            print("Oil Temp is empty. Return 0")
+            return 0
         if temp_list == -1:
             return oldValues[3]
 
@@ -157,6 +173,10 @@ class obddata(object):
         self.serialWrite("05")
         # write the values to a list
         temp_list = self.serialRead()
+        # Check to make sure returned list is not empty
+        if not temp_list:
+            print("Coolant Temp is empty. Return 0")
+            return 0
         if temp_list == -1:
             return oldValues[4]
         else:
@@ -183,6 +203,10 @@ class obddata(object):
             return "Serial IO not setup."
         self.serialWrite("04")
         load_list = self.serialRead()
+        # Check to make sure returned list is not empty
+        if not load_list:
+            print("Engine Load is empty. Return 0")
+            return 0
         if load_list == -1:
             return oldValues[5]
         else:
@@ -197,6 +221,10 @@ class obddata(object):
             return "Serial IO not setup"
         self.serialWrite("10")
         temp_list = self.serialRead()
+        # Check to make sure returned list is not empty
+        if not temp_list:
+            print("Air Flow Rate is empty. Return 0")
+            return 0
         if temp_list == -1:
             return oldValues[6]
         else:
