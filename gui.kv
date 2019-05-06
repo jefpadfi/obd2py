@@ -11,16 +11,38 @@ ScreenManagement:
             GridLayout:
                 cols: 2
                 Label:
+                    id: speed
                     text: 'Speed: '
                 Label:
+                    id: rpm
                     text: 'RPM: '
                 Label:
+                    id: oil_temp
                     text: 'Oil Temp: '
                 Label:
+                    id: coolant_temp
                     text: 'Coolant Temp: '
                 Label:
+                    id: intake_temp
                     text: 'Intake Temp: '
                 Label:
+                    id: engine_load
                     text: ' Engine Load: '
         TabbedPanelItem:
             text: 'Settings'
+            GridLayout:
+                cols: 2
+                Label:
+                    id: speed_type
+                    text: 'Use MPH: '
+                CheckBox:
+                    id: mphcheckbox
+                    active: True
+                    on_active: root.is_mph_active(self, self.active)
+                Label:
+                    id: speed_type
+                    text: 'Use Fahrenheit: '
+                CheckBox:
+                    id: fahrenheitcheckbox
+                    active: True
+                    on_active: root.is_fahrenheit_active(self, self.active)

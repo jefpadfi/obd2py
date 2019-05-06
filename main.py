@@ -9,6 +9,7 @@ Date Edited: 05/06/2019
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
+from kivy.logger import Logger
 
 try:
     import serial
@@ -17,7 +18,18 @@ except AttributeError:
 
 
 class MainScreen(Screen):
-    pass
+
+    def is_mph_active(self, checkbox, value):
+        if value:
+            Logger.critical("MPH will be shown.")
+        else:
+            Logger.critical("KPH will be shown.")
+
+    def is_fahrenheit_active(self, checkbox, value):
+        if value:
+            Logger.critical("Fahrenheit will be shown.")
+        else:
+            Logger.critical("Celsius will be shown.")
 
 
 class ScreenManagement(ScreenManager):
