@@ -1,14 +1,14 @@
-'''
+"""
 Programmer: JR Padfield
 Description: Launches the program
-Version: 1
+Version: 2
 Date: 07/15/2014
-'''
+Date Edited: 05/06/2019
+"""
 
-from tkinter import *
-from config import guiUpdate, serialDevice, OBDValues
-import gui
-from obddata import obddata
+from kivy.app import App
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 
 try:
     import serial
@@ -16,26 +16,26 @@ except AttributeError:
     print("Please install pySerial so we can use this program")
 
 
-class OBD2PY(Frame):
-    def __init__(self, master):
-        """ Loads all files and executes the gui """
-        self.obdII = obddata()
-        super(OBD2PY, self).__init__(master)
-        self.grid()
-        gui.GUI.create_gui(self)
-        self.stop = False
-        self.run()
+class MainScreen(Screen):
+    pass
 
-    def run(self):
-        """ Runs the main program and updates values """
-        self.obdII.readValues(OBDValues)
-        gui.GUI.update_gui(self)
-        self.after(guiUpdate, self.run)
+
+class ScreenManagement(ScreenManager):
+    pass
+
+
+# Let's load GUI File for the app
+presentation = Builder.load_file('gui.kv')
+
+
+class ObdiiPy(App):
+    title = "OBD2PY - By: The Crzy Doctor"
+
+    def build(self):
+        """ Builds the gui and returns the gui object to display. """
+        return MainScreen()
+
 
 if __name__ == "__main__":
-    ''' Start the application '''
-    root = Tk()
-    root.title("OBD2PY - By: The Doctor")
-    root.geometry("1024x640")
-    app = OBD2PY(root)
-    root.mainloop()
+    """ Run the kivy app """
+    ObdiiPy().run()

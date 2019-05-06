@@ -18,11 +18,7 @@ speedFormat = "mph"  # mph = us format, kph = metric format
 fuelFormat = "mpg"  # mpg = miles per gallon, lpg = liters per gallon
 
 # logging
-logging = True  # if you want to use SQLite to log the information set it to true.
-                # If you don't want to log it set to false.
-
-# update interval - updates the gui every x seconds
-guiUpdate = 500  # 1000ms = 1 second
+logging = True  # True = Log, False = no log
 
 # List to hold values to display on lcd
 OBDValues = [0, 0, 0, 0, 0, 0, 0, 0]

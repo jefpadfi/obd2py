@@ -1,20 +1,28 @@
 obd2py
 ======
 
-OBD2 to Python is a python application built for the Raspberry Pi. It will display basic and advanced information for your vehicle. This program is based off of pi2go found at https://github.com/kd8bny/pi2go
+## About
+OBD2PY is an OBDII reader. It allows you to pull information from your vehicle via the OBDII reader underneath the dash. 
 
-The biggest difference is the interface used. I will be using tkinter where at pi2go usede QT
+OBD2PY is getting a huge overhaul. The GUI system will be traded out from TKInter to Kivy.
 
-Basic Features:
-Speed,
-RPM,
-Temps for oil, coolant, intake,
-Engine load,
-Setting of mph, kph, fahrenheit, celsius
+## Requirements
+Check the requirements.py file.
 
-Advanced Features:
-MPG/LPG,
-Trip Distance,
-Engine Time,
-Logging to SQLite,
-Fuel Level,
+## Basic Features:
+* Speed
+* RPM
+* Temps for oil, coolant, intake,
+* Engine load
+* Setting of mph, kph, fahrenheit, celsius
+
+## Advanced Features:
+* MPG/LPG
+* Trip Distance
+* Engine Time
+* Logging to SQLite
+* Fuel Level
+
+
+## Based off of pi2go
+OBD2PY is based off the works found This program is based off of pi2go found at [here](ttps://github.com/kd8bny/pi2go).
