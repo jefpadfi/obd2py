@@ -7,7 +7,7 @@ OBD2PY is an OBDII reader. It allows you to pull information from your vehicle v
 OBD2PY is getting a huge overhaul. The GUI system will be traded out from TKInter to Kivy.
 
 ## Requirements
-Check the requirements.py file.
+Check the requirements.txt file.
 
 ## Basic Features:
 * Speed
