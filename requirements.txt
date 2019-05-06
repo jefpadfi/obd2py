@@ -1,0 +1,14 @@
+certifi==2019.3.9
+chardet==3.0.4
+docutils==0.14
+idna==2.8
+Kivy==1.10.1
+Kivy-Garden==0.1.4
+kivy.deps.glew==0.1.10
+kivy.deps.sdl2==0.1.18
+Pygments==2.3.1
+pypiwin32==223
+pyserial==3.4
+pywin32==224
+requests==2.21.0
+urllib3==1.24.3
