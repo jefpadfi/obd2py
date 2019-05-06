@@ -14,18 +14,20 @@ from kivy.logger import Logger
 try:
     import serial
 except AttributeError:
-    print("Please install pySerial so we can use this program")
+    print("Please install pySerial so you can use this program")
 
 
 class MainScreen(Screen):
 
     def is_mph_active(self, checkbox, value):
+        """ Debugging to see if checkbox is working. """
         if value:
             Logger.critical("MPH will be shown.")
         else:
             Logger.critical("KPH will be shown.")
 
     def is_fahrenheit_active(self, checkbox, value):
+        """ Debugging to see if checkbox is working. """
         if value:
             Logger.critical("Fahrenheit will be shown.")
         else:

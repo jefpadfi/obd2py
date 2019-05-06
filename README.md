@@ -25,4 +25,4 @@ Check the requirements.py file.
 
 
 ## Based off of pi2go
-OBD2PY is based off the works found This program is based off of pi2go found at [here](ttps://github.com/kd8bny/pi2go).
+OBD2PY is based off the works found This program is based off of pi2go found at [here](https://github.com/kd8bny/pi2go).
