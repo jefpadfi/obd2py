@@ -28,21 +28,16 @@ ScreenManagement:
                 Label:
                     id: engine_load
                     text: ' Engine Load: '
+                Button:
+                    id: open_settings
+                    text: 'Edit Settings'
+                    on_release: app.open_settings()
+                    size: 150,50
+                    size_hint: None, None
         TabbedPanelItem:
-            text: 'Settings'
+            text: 'Advanced Info'
             GridLayout:
-                cols: 2
+                cols: 1
                 Label:
-                    id: speed_type
-                    text: 'Use MPH: '
-                CheckBox:
-                    id: mphcheckbox
-                    active: True
-                    on_active: root.is_mph_active(self, self.active)
-                Label:
-                    id: speed_type
-                    text: 'Use Fahrenheit: '
-                CheckBox:
-                    id: fahrenheitcheckbox
-                    active: True
-                    on_active: root.is_fahrenheit_active(self, self.active)
+                    text: 'Advanced Information coming in Version 2.0.0'
+

@@ -9,29 +9,22 @@ Date Edited: 05/06/2019
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
-from kivy.logger import Logger
+from settings_json import settings_json
+from obddata import ObdData
+from kivy.clock import Clock
+from log import ObdLogging
 
-try:
-    import serial
-except AttributeError:
-    print("Please install pySerial so you can use this program")
+
+obdii_setting = None
+obdii = ObdData()
+obdlogging = ObdLogging()
+obdlogging.check_for_db()
+
+Clock.schedule_once(obdii.connectToSerial, 2)
 
 
 class MainScreen(Screen):
-
-    def is_mph_active(self, checkbox, value):
-        """ Debugging to see if checkbox is working. """
-        if value:
-            Logger.critical("MPH will be shown.")
-        else:
-            Logger.critical("KPH will be shown.")
-
-    def is_fahrenheit_active(self, checkbox, value):
-        """ Debugging to see if checkbox is working. """
-        if value:
-            Logger.critical("Fahrenheit will be shown.")
-        else:
-            Logger.critical("Celsius will be shown.")
+    pass
 
 
 class ScreenManagement(ScreenManager):
@@ -47,7 +40,22 @@ class ObdiiPy(App):
 
     def build(self):
         """ Builds the gui and returns the gui object to display. """
+        self.use_kivy_settings = False
+        global obdii_setting
+        obdii_setting = self.config.items('obdii_settings')
         return MainScreen()
+
+    def build_config(self, config):
+        config.setdefaults('obdii_settings', {
+            'use_mph': 1,
+            'use_fahrenheit': 1,
+            'enable_logging': 1
+        })
+
+    def build_settings(self, settings):
+        settings.add_json_panel('OBD2PY Settings',
+                                self.config,
+                                data=settings_json)
 
 
 if __name__ == "__main__":

@@ -7,25 +7,41 @@ Date: 07/15/2014
 Most definitions were found in pi2go. Updated the equations according to OBD-11PID wiki page.
 '''
 
-import string
-import time
 from config import *
+from kivy.uix.popup import Popup
+from kivy.uix.label import Label
+
 try:
     import serial
-except AttributeError:
-    print("Please install pySerial so we can use this program")
+except ModuleNotFoundError:
+    popup = Popup(title='pySerial Error',
+                  content=Label(text='pySerial was not found on this machine. Please make sure to install it.'),
+                  auto_dismiss=False)
+    popup.open()
 
 
-class obddata(object):
+class ObdData(object):
     """Data collected from obd sensors """
 
     def __init__(self):
+        self.serialIO = None
+
+    def connectToSerial(self, dt):
         try:
             self.serialIO = serial.Serial(serialDevice, 38400, timeout=1)
             print("serialIO setup correctly")
-        except():
+        except NameError:
+            popup_serial = Popup(title='pySerial Error',
+                                 content=Label(text='pySerial is not installed. Please install it.'),
+                                 size_hint=(None, None), size=(400, 150))
+            popup_serial.open()
+        except serial.serialutil.SerialException:
             print("Issue with communicating with the Serial device. "
                   "\nPlease check config.py's serialDevice setting is correct.")
+            popup_serial = Popup(title='Serial Device Error',
+                                 content=Label(text='Serial device not found.'),
+                                 size_hint=(None, None), size=(400, 150))
+            popup_serial.open()
             self.serialIO = None
 
     def serialWrite(self, cmd):
@@ -241,11 +257,13 @@ class obddata(object):
 
     def readValues(self, OBDvalues):
         """ Gets all the values to display! """
-        OBDValues[0] = obddata.speed(self, OBDvalues)
-        OBDValues[1] = obddata.rpm(self, OBDvalues)
-        OBDValues[2] = obddata.intake_temp(self, OBDvalues)
-        # OBDValues[3] = obddata.oil_temp(self, OBDvalues)
-        OBDValues[4] = obddata.coolant_temp(self, OBDvalues)
-        OBDValues[5] = obddata.engine_load(self, OBDvalues)
-        # OBDValues[6] = obddata.air_flow_rate(self, OBDvalues)
-        # OBDValues[7] = obddata.mpg(self, OBDvalues)
+        if self.serialIO is not None:
+            OBDValues[0] = ObdData.speed(self, OBDvalues)
+            OBDValues[1] = ObdData.rpm(self, OBDvalues)
+            OBDValues[2] = ObdData.intake_temp(self, OBDvalues)
+            # OBDValues[3] = obddata.oil_temp(self, OBDvalues)
+            OBDValues[4] = ObdData.coolant_temp(self, OBDvalues)
+            OBDValues[5] = ObdData.engine_load(self, OBDvalues)
+            # OBDValues[6] = obddata.air_flow_rate(self, OBDvalues)
+            # OBDValues[7] = obddata.mpg(self, OBDvalues)
+
