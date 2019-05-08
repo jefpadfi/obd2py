@@ -13,6 +13,7 @@ from settings_json import settings_json
 from obddata import ObdData
 from kivy.clock import Clock
 from log import ObdLogging
+from kivy.core.window import Window
 
 
 obdii_setting = None
@@ -37,6 +38,7 @@ presentation = Builder.load_file('gui.kv')
 
 class ObdiiPy(App):
     title = "OBD2PY - By: The Crzy Doctor"
+    Window.size = (350, 300)
 
     def build(self):
         """ Builds the gui and returns the gui object to display. """

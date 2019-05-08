@@ -33,14 +33,12 @@ class ObdData(object):
         except NameError:
             popup_serial = Popup(title='pySerial Error',
                                  content=Label(text='pySerial is not installed. Please install it.'),
-                                 size_hint=(None, None), size=(400, 150))
+                                 size_hint=(None, None), size=(250, 150))
             popup_serial.open()
         except serial.serialutil.SerialException:
-            print("Issue with communicating with the Serial device. "
-                  "\nPlease check config.py's serialDevice setting is correct.")
             popup_serial = Popup(title='Serial Device Error',
                                  content=Label(text='Serial device not found.'),
-                                 size_hint=(None, None), size=(400, 150))
+                                 size_hint=(None, None), size=(250, 150))
             popup_serial.open()
             self.serialIO = None
 
