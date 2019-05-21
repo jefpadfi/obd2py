@@ -14,6 +14,7 @@ from obddata import ObdData
 from kivy.clock import Clock
 from log import ObdLogging
 from kivy.core.window import Window
+import config as conf
 
 
 obdii_setting = None
@@ -25,7 +26,9 @@ Clock.schedule_once(obdii.connectToSerial, 2)
 
 
 class MainScreen(Screen):
-    pass
+
+    def on_load(self):
+        conf.updateText = self
 
 
 class ScreenManagement(ScreenManager):

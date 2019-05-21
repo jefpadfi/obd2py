@@ -22,3 +22,7 @@ logging = True  # True = Log, False = no log
 
 # List to hold values to display on lcd
 OBDValues = [0, 0, 0, 0, 0, 0, 0, 0]
+
+
+# Update Text
+updateText = None

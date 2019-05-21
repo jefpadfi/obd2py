@@ -4,12 +4,15 @@ Description: Pulls information from the obd 2 sensors.
 Version: 1
 Date: 07/15/2014
 
-Most definitions were found in pi2go. Updated the equations according to OBD-11PID wiki page.
+Most definitions were found in pi2go. Updated the equations according to OBDII PID wiki page.
 '''
 
 from config import *
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+from kivy.clock import Clock
+from functools import partial
+import config as conf
 
 try:
     import serial
@@ -30,6 +33,11 @@ class ObdData(object):
         try:
             self.serialIO = serial.Serial(serialDevice, 38400, timeout=1)
             print("serialIO setup correctly")
+            popup_serial = Popup(title='pySerial Setup',
+                                 content=Label(text='pySerial has found the device. It will now work.'),
+                                 size_hint=(None, None), size=(250, 150))
+            popup_serial.open()
+            Clock.schedule_interval(partial(self.readValues, OBDValues), .5)
         except NameError:
             popup_serial = Popup(title='pySerial Error',
                                  content=Label(text='pySerial is not installed. Please install it.'),
@@ -253,15 +261,15 @@ class ObdData(object):
         """ Returns the MPG for the car. """
         return 710.7 * oldValues[0] / oldValues[6]
 
-    def readValues(self, OBDvalues):
+    def readValues(self, OBDvalues, dt):
         """ Gets all the values to display! """
         if self.serialIO is not None:
-            OBDValues[0] = ObdData.speed(self, OBDvalues)
-            OBDValues[1] = ObdData.rpm(self, OBDvalues)
-            OBDValues[2] = ObdData.intake_temp(self, OBDvalues)
-            # OBDValues[3] = obddata.oil_temp(self, OBDvalues)
-            OBDValues[4] = ObdData.coolant_temp(self, OBDvalues)
-            OBDValues[5] = ObdData.engine_load(self, OBDvalues)
+            conf.updateText.ids.speed.text = ObdData.speed(self, OBDvalues)
+            conf.updateText.ids.rpm.text = ObdData.rpm(self, OBDvalues)
+            conf.updateText.ids.instake_tmep.text = ObdData.intake_temp(self, OBDvalues)
+            # conf.updateText.ids.oil_temp.text = obddata.oil_temp(self, OBDvalues)
+            conf.updateText.ids.coolant_temp.text = ObdData.coolant_temp(self, OBDvalues)
+            conf.updateText.ids.engine_load.text = ObdData.engine_load(self, OBDvalues)
             # OBDValues[6] = obddata.air_flow_rate(self, OBDvalues)
             # OBDValues[7] = obddata.mpg(self, OBDvalues)
 
