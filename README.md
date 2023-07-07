@@ -1,4 +1,6 @@
 obd2py
+
+ARCHIVED! THIS IS NO LONGER MAINTAINED!
 ======
 
 ## About
